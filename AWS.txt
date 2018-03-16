@@ -1,0 +1,115 @@
+Dimension Modeling
+Datawarehouse ETL concepts
+
+1. SQL concepts - Joins etc.
+2. DWH concepts - Types of schemas etc.
+1. What is the most challenging problem you solved at your company?
+2. How did you go above and beyond your role to keep the customers or business owners of your project happy?
+3. What was a way you found a really innovative solution to a problem?   
+Dimensional Modeling
+Datawarehouse concepts
+
+1. What difference have you made in current team apart from regular work ?
+2. What are the steps you follow to rebuild a table in database ?
+3. How did you do performance tuning ?
+4. How do you find the skewness of data in table ?
+5. Difference between RDBMS and Dimensional Modeling
+
+SQL
+1) purchase
+
+customer_id product_id quantity purchase_date
+1 111 1 01/01/2017
+1 111 2 01/02/2107
+1 222 2 01/02/2017
+2 111 3 01/04/2017
+2 222 1 01/03/2017
+3 222 1 01/05/2017
+3 222 1 01/06/2017
+3 111 1 01/06/2017
+3 111 1 01/04/2017
+
+Q: How many customers bought each product how many times during the week?
+
+Product_Id Number_of Customers Number_of_Times
+111 2 2
+111 1 1
+222 2 1
+222 1 2
+
+2) daily_usage
+
+account_id usage_amount usage_date
+1 10 1
+1 20 2
+1 15 3
+1 30 4
+
+Q.
+a) How do you print the usage_amount of previous/consecutive rows
+b) Without using window functions   
+
+
+>>>finding the third high, finding the newest one.   
+
+SQL query to calculate orders for last week when the date when it was ordered is given.   
+
+1. Data Modeling: Design data model in order to track product from Vendor => Amazon warehouse => delivery to customer?
+2. Multiple ways to generate running totals using select query?
+3. Approaches on performance tuning ?
+4. How to insert data in DWH tables for early arriving facts?
+
+>>Provide pseudo-code to find the minimal canopy count, given a list of edges and nodes in a graph.  
+
+>>Indexes in Oracle   
+
+>>Tell me about a time you were in a meeting and had an opinion different from everyone else in the room. What did you do and what were the outcomes?   
+
+>>Design database for movies (like IMDB).   
+I want to design a database similar to imdb, design it, and tell me the structure/fields so that 1. given a specific year, you can find top 5 grossing films 2. given an actor, return all his costars 3. all movies with more than 3 cast members.   
+
+>>Hash table inside memory   ;
+
+>>write a code for finding the sum of any two numbers in the given array could be equal to x   
+>> Extend the previous question for finding sum of any three numbers in given array could be equal to x  
+>> Marks of a subject of many students are arranged as a Binary Search Tree.Found that even ranked students cheated in exam so deduct 10 marks from each even ranked student without changing the structure of the tree   
+>> what is a index and different types of indexes and explain and differentiate them   
+
+>> Create required tables for an online store, define necessary relations,primary keys,foreign keys   
+
+>>Partitioning methedolgies.
+
+>>Can you design a simple OLTP architecture so that you can convince the Redbus team to give project to you. ( blue print with basic functionality )   
+>> Write SQL to Find groups having exactly three different tags
+
+>> To build a Data Model of a reservation platform.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
