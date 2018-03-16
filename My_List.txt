@@ -1,0 +1,41 @@
+1.		Fibonacci
+2.		Palindrome
+3. 		One String permutation of other
+4. 		Reverse a String
+5.		Prime Number
+6.		Remove Duplicates from Array
+7. 		Maximum Subarray ##
+8.		Count Words
+9.		Sort the String - Bubble Sort, Insertion Sort, Merge Sort
+10.		Reverse an Array
+11.		Replace Characters Recursively
+12.		Find min and max values in an Array
+14.		Median of the Array
+15. 	Greatest Common Factor
+16.		Least Common Factor
+18. 	Perfect Number (sum of its positive divisors)
+19.		Factorial - Loop, Recursive
+20.		Count a character in a String - recursively
+21. 	Count of occurrence of a digit in a number - recursive
+22.		Sum of digits - recursively
+23.		First non recurring element in a list
+24. 	Most recurring element in a list
+25.		Min absolute difference between the set in an array
+26.		Sum of 2 number equal to a target
+
+
+
+
+
+######################################################################
+SQL
+######################################################################
+
+1.		Cumulative Salary of employee per dept
+2.		Nth salary in employee 
+3.		Top N salaries in employee table
+4. 		Delete duplicate rows
+5. 		Max salary of dept
+6.		Highest Salary per department
+7. 		Shortest distance in a line
+8.		Rank without Rank function
