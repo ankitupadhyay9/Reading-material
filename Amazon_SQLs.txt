@@ -1,0 +1,628 @@
+create table Product_table (PRODUCT_ID varchar2(10),PRODUCT_GROUP varchar2(100), PRODUCT_NAME varchar2(255));create table Sales_table(SNAPSHOT_DAY date,PRODUCT_ID varchar2(10),SALES_AMT number);create table GV_table (SNAPSHOT_DAY date,PRODUCT_ID varchar2(10),GLANCE_VIEWS number);INSERT INTO product_table values('P1',   'Book'           ,'Harry Potter 1');INSERT INTO product_table values('P2',   'Book'           ,'Harry Potter 2');INSERT INTO product_table values('P3',   'Electronics'    ,'Nikon 10 MPS');INSERT INTO product_table values('P4',   'Electronics'    ,'Cannon 8 MPS');INSERT INTO product_table values('P5',   'Electronics'    ,'Cannon 10 MPS');INSERT INTO product_table values('P6',   'Video DVD'      ,'Pirates 1');INSERT INTO product_table values('P7',   'Video DVD'      ,'Pirates 2');INSERT INTO product_table values('P8',   'Video DVD'      ,'HP 1');INSERT INTO product_table values('P9',   'Video DVD'      ,'HP 2');INSERT INTO product_table values('P10',  'Shoes'          ,'Nike 10');INSERT INTO product_table values('P11',  'Shoes'          ,'Nike 11');INSERT INTO product_table values('P12',  'Shoes'          ,'Adidas 10');INSERT INTO product_table values('P13',  'Shoes'          ,'Adidas 09');INSERT INTO product_table values('P14',  'Book'           ,'God Father 1');INSERT INTO product_table values('P15',  'Book'           ,'God Father 2');INSERT INTO sales_table values ('20-JUL-11','P1',10 );INSERT INTO sales_table values ('20-JUL-11','P2',5  );INSERT INTO sales_table values ('20-JUL-11','P8',100);INSERT INTO sales_table values ('20-JUL-11','P3',5  );INSERT INTO sales_table values ('20-JUL-11','P4',25 );INSERT INTO sales_table values ('20-JUL-11','P5',15 );INSERT INTO sales_table values ('20-JUL-11','P6',35 );INSERT INTO sales_table values ('20-JUL-11','P7',5  );INSERT INTO sales_table values ('20-JUL-11','P9',30 );INSERT INTO sales_table values ('20-JUL-11','P10',8 );INSERT INTO sales_table values ('20-JUL-11','P11',45);INSERT INTO gv_table values ('20-JUL-11','P1',1000);INSERT INTO gv_table values ('20-JUL-11','P2', 800);INSERT INTO gv_table values ('20-JUL-11','P8', 700);INSERT INTO gv_table values ('20-JUL-11','P3', 800);INSERT INTO gv_table values ('20-JUL-11','P4', 500);INSERT INTO gv_table values ('20-JUL-11','P5', 250);create table order_table (order_day date,order_id varchar2(10), product_id varchar2(10), quantity number,price number);INSERT INTO order_table VALUES('01-JUL-11','O1',	'P1',  5, 5);INSERT INTO order_table VALUES('01-JUL-11','O2',	'P2',  2,10);INSERT INTO order_table VALUES('01-JUL-11','O3',	'P3', 10,25);INSERT INTO order_table VALUES('01-JUL-11','O4',	'P1', 20, 5);INSERT INTO order_table VALUES('02-JUL-11','O5',	'P3',  5,25);INSERT INTO order_table VALUES('02-JUL-11','O6',	'P4',  6,20);INSERT INTO order_table VALUES('02-JUL-11','O7',	'P1',  2, 5);INSERT INTO order_table VALUES('02-JUL-11','O8',	'P5',  1,50);INSERT INTO order_table VALUES('02-JUL-11','O9',	'P6',  2,50);INSERT INTO order_table VALUES('02-JUL-11','O10','P2',  4,10);===============================================================================================================================Complex SQL : 
+Time required : 10 mins 
+
+Product Dimension Table: 
+Table Name --> Product_table
++------------+---------------+----------------+
+| PRODUCT_ID | PRODUCT_GROUP | PRODUCT_NAME   |
++------------+---------------+----------------+
+| P1         | Book          | Harry Potter 1 |
+| P2         | Book          | Harry Potter 2 |
+| P3         | Electronics   | Nikon 10 MPS   |
+| P4         | Electronics   | Cannon 8 MPS   |
+| P5         | Electronics   | Cannon 10 MPS  |
+| P6         | Video DVD     | Pirates 1      |
+| P7         | Video DVD     | Pirates 2      |
+| P8         | Video DVD     | HP 1           |
+| P9         | Video DVD     | HP 2           |
+| P10        | Shoes         | Nike 10        |
+| P11        | Shoes         | Nike 11        |
+| P12        | Shoes         | Adidas 10      |
+| P13        | Shoes         | Adidas 09      |
+| P14        | Book          | God Father 1   |
+| P15        | Book          | God Father 2   |
++------------+---------------+----------------+
+ 
+Sales_fact Table: 
+Table Name -->  Sales_table
+
++-------------+---------------+--------------+
+|SNAPSHOT_DAY |  PRODUCT_ID   |    SALES_AMT |
+|+------------+---------------+--------------+
+|20-JUL-11    |       P1      |         10   |
+|20-JUL-11    |       P2      |         5    |
+|20-JUL-11    |       P8      |         100  |
+|20-JUL-11    |       P3      |         5    |
+|20-JUL-11    |       P4      |         25   |
+|20-JUL-11    |       P5      |         15   |
+|20-JUL-11    |       P6      |         35   |
+|20-JUL-11    |       P7      |         5    |
+|20-JUL-11    |       P9      |         30   |
+|20-JUL-11    |       P10     |         8    |
+|20-JUL-11    |       P11     |         45   |
++-------------+---------------+--------------+
+ 
+Glance View Fact Table: 
+Table Name --> GV_table
+
++-------------+--------------+------------------|
+|SNAPSHOT_DAY |  PRODUCT_ID  |   GLANCE_VIEWS   |
++-------------+--------------+------------------|
+|  20-JUL-11  |     P1       |      1000        |
+|  20-JUL-11  |     P2       |       800        |
+|  20-JUL-11  |     P8       |       700        |
+|  20-JUL-11  |     P3       |       800        |
+|  20-JUL-11  |     P4       |       500        |
+|  20-JUL-11  |     P5       |       250        |
+|  20-JUL-11  |     P6       |       10         |
+|  20-JUL-11  |     P7       |       1000       |
+|  20-JUL-11  |     P9       |       1500       |
+|  20-JUL-11  |     P10      |       600        |
+|  20-JUL-11  |     P12      |       670        |
+|  20-JUL-11  |     P13      |       300        |
+|  20-JUL-11  |     P14      |       230        |
++-----------------------------------------------+
+
+Question :
+Write a SQL that will give the top product by sales in each of the product groups and additionally gather Glance View information.
+
+Desired Output :
+
++-------------+-----+-----+------+
+| Book 		  | P1  | 10  | 1000 |
+| Electronics | P4  | 25  | 500  |
+| Shoes 	  |	P11 | 45  | 0    |
+| Video DVD   |	P8  | 100 | 700  |
++-------------+-----+-----+------+
+Query:select * from (select * from (select p.product_group, s.product_id, SUM(s.sales_amt),ROW_NUMBER() OVER(PARTITION BY p.product_group ORDER BY SUM(s.sales_amt) DESC) rnfrom sales_table s, Product_table pwhere s.product_id = p.product_idgroup by p.product_group, s.product_id		)where rn = 1) t1left join (select product_id, SUM(glance_views) sgvfrom gv_table ggroup by product_id) t2on t1.product_id = t2.product_id
+
+===================================================================================
+
+Question 1:Consider an Order Table with the following table structure with some  Sample Data:
+
+ORDER_DAY	   ORDER_ID		PRODUCT_ID   QUANTITY	   PRICE
+------------------ -------------------- ---------- ---------- ----------
+01-JUL-11	   O1			P1		    5	       5
+01-JUL-11	   O2			P2		    2	      10
+01-JUL-11	   O3			P3		   10	      25
+01-JUL-11	   O4			P1		   20	       5
+02-JUL-11	   O5			P3		    5	      25
+02-JUL-11	   O6			P4		    6	      20
+02-JUL-11	   O7			P1		    2	       5
+02-JUL-11	   O8			P5		    1	      50
+02-JUL-11	   O9			P6		    2	      50
+02-JUL-11	   O10			P2		    4	      10
+
+Q: Write a SQL to get all products that got sold both the days and the number of times the product is sold. 
+
+Desired output :
+
+PRODUCT_ID  COUNT
+P1            3
+P2            2
+P3            2
+select product_id,count(1)from order_table owhere product_id in(select distinct product_idfrom order_table owhere o.order_day = '01-Jul-11'  and o.product_id in (select distinct product_id from order_table where order_day = '02-Jul-11'))group by product_id
+
+===================================================================================
+
+Same Order Table as above:
+
+ORDER_DAY	   ORDER_ID		PRODUCT_ID   QUANTITY	   PRICE
+------------------ -------------------- ---------- ---------- ----------
+01-JUL-11	   O1			P1		    5	       5
+01-JUL-11	   O2			P2		    2	      10
+01-JUL-11	   O3			P3		   10	      25
+01-JUL-11	   O4			P1		   20	       5
+02-JUL-11	   O5			P3		    5	      25
+02-JUL-11	   O6			P4		    6	      20
+02-JUL-11	   O7			P1		    2	       5
+02-JUL-11	   O8			P5		    1	      50
+02-JUL-11	   O9			P6		    2	      50
+02-JUL-11	   O10			P2		    4	      10
+
+Q: Get me products that was ordered on 02-Jul-11  but not on 01-Jul-11
+
+Desired output :
+
+P4
+P5
+P6
+
+===================================================================================
+
+For the same Order table as above:
+
+3 Order Sample data:...  Order Sample data:
+ORDER_DAY	   ORDER_ID		PRODUCT_ID   QUANTITY	   PRICE
+------------------ -------------------- ---------- ---------- ----------
+01-JUL-11	   O1			P1		    5	       5
+01-JUL-11	   O2			P2		    2	      10
+01-JUL-11	   O3			P3		   10	      25
+01-JUL-11	   O4			P1		   20	       5
+02-JUL-11	   O5			P3		    5	      25
+02-JUL-11	   O6			P4		    6	      20
+02-JUL-11	   O7			P1		    2	       5
+02-JUL-11	   O8			P5		    1	      50
+02-JUL-11	   O9			P6		    2	      50
+02-JUL-11	   O10			P2		    4	      10
+
+Q: Get me highest sold Products (Qty* Price) on both days 
+
+Desired output :
+
+DATE      PRODUCT_ID SOLD_AMOUNT
+01-JUL-11      P3        250
+02-JUL-11      P3        125
+
+===================================================================================
+
+For the Same Order Table as above:
+
+ORDER_DAY	   ORDER_ID		PRODUCT_ID   QUANTITY	   PRICE
+------------------ -------------------- ---------- ---------- ----------
+01-JUL-11	   O1			P1		    5	       5
+01-JUL-11	   O2			P2		    2	      10
+01-JUL-11	   O3			P3		   10	      25
+01-JUL-11	   O4			P1		   20	       5
+02-JUL-11	   O5			P3		    5	      25
+02-JUL-11	   O6			P4		    6	      20
+02-JUL-11	   O7			P1		    2	       5
+02-JUL-11	   O8			P5		    1	      50
+02-JUL-11	   O9			P6		    2	      50
+02-JUL-11	   O10			P2		    4	      10
+
+Q: Get me for all products, total sales on 01-JUL-11 and 02-JUL-11 adjacent to each other
+
+Desired Output: 
+P1 125 10
+P2 20 40
+P3 250 125
+P4 0 120
+P5 0 50
+P6 0 100
+
+===================================================================================
+
+For the same Order table as above:
+
+ORDER_DAY	   ORDER_ID		PRODUCT_ID   QUANTITY	   PRICE
+------------------ -------------------- ---------- ---------- ----------
+01-JUL-11	   O1			P1		    5	       5
+01-JUL-11	   O2			P2		    2	      10
+01-JUL-11	   O3			P3		   10	      25
+01-JUL-11	   O4			P1		   20	       5
+02-JUL-11	   O5			P3		    5	      25
+02-JUL-11	   O6			P4		    6	      20
+02-JUL-11	   O7			P1		    2	       5
+02-JUL-11	   O8			P5		    1	      50
+02-JUL-11	   O9			P6		    2	      50
+02-JUL-11	   O10			P2		    4	      10
+
+Q: Get me all products day vis, that was ordered more than once
+
+Desired output:
+
+01-JUL-11 P1
+
+===================================================================================
+
+Consider an Order Table: ...  Order Table:
+Order Id  Item  Qty
+--------  ----  --------- 
+O1        A1    5
+O2        A2    1
+O3        A3    3
+ 
+Q: Please provide SQL which will explode the above data into single unit level records as shown below
+
+Desired Output:
+
+Order Id  Item  Qty
+--------  ----  --------- 
+O1        A1    1
+O1        A1    1
+O1        A1    1
+O1        A1    1
+O1        A1    1
+O2        A2    1
+O3        A3    1
+O3        A3    1
+O3        A3    1
+
+===================================================================================
+
+Question 8:
+
+Product Dimension Table:
++------------+---------------+----------------+
+| PRODUCT_ID | PRODUCT_GROUP | PRODUCT_NAME   |
++------------+---------------+----------------+
+| P1         | Book          | Harry Potter 1 |
+| P2         | Book          | Harry Potter 2 |
+| P3         | Electronics   | Nikon 10 MPS   |
+| P4         | Electronics   | Cannon 8 MPS   |
+| P5         | Electronics   | Cannon 10 MPS  |
+| P6         | Video DVD     | Pirates 1      |
+| P7         | Video DVD     | Pirates 2      |
+| P8         | Video DVD     | HP 1           |
+| P9         | Video DVD     | HP 2           |
+| P10        | Shoes         | Nike 10        |
+| P11        | Shoes         | Nike 11        |
+| P12        | Shoes         | Adidas 10      |
+| P13        | Shoes         | Adidas 09      |
+| P14        | Book          | God Father 1   |
+| P15        | Book          | God Father 2   |
++------------+---------------+----------------+
+ 
+Sales_fact Table:
+
+SNAPSHOT_DAY     PRODUCT_ID   SALES_AMT
+20-JUL-11               P1               10 
+20-JUL-11               P2               5 
+20-JUL-11               P8               100 
+20-JUL-11               P3               5 
+20-JUL-11               P4               25 
+20-JUL-11               P5               15 
+20-JUL-11               P6               35 
+20-JUL-11               P7               5
+20-JUL-11               P9               30 
+20-JUL-11               P10             8 
+20-JUL-11               P11             45
+ 
+Glance View Fact Table:
+
+SNAPSHOT_DAY    PRODUCT_ID GLANCE_VIEWS  
+20-JUL-11                 P1             1000 
+20-JUL-11                 P2              800 
+20-JUL-11                 P8              700 
+20-JUL-11                 P3              800 
+20-JUL-11                 P4              500 
+20-JUL-11                 P5              250 
+20-JUL-11                 P6              10 
+20-JUL-11                 P7              1000 
+20-JUL-11                 P9              1500 
+20-JUL-11                 P10             600 
+20-JUL-11                 P12             670 
+20-JUL-11                 P13             300 
+20-JUL-11                 P14             230
+ 
+Inventory Fact Table:
+
+SNAPSHOT_DAY        PRODUCT_ID          ON_HAND_QUANTITY  
+20-JUL-11                P1                        100 
+20-JUL-11                P2                          70 
+20-JUL-11                P8                          90 
+20-JUL-11                P3                          10 
+20-JUL-11                P4                          30 
+20-JUL-11                P5                        100 
+20-JUL-11                P6                        120 
+20-JUL-11                P7                         70 
+20-JUL-11                P9                         90
+ 
+Ad_spend_fact Table:
+
+SNAPSHOT_DAY     PRODUCT_ID        AD_SPENT
+20-JUL-11              P1                       10 
+20-JUL-11              P2                        5 
+20-JUL-11              P8                     100 
+20-JUL-11              P3                        5  
+20-JUL-11              P4                      25 
+20-JUL-11              P5                      15 
+20-JUL-11              P6                      35 
+20-JUL-11              P7                       5
+20-JUL-11              P9                     30 
+20-JUL-11              P10                     8 
+20-JUL-11              P11                   45
+ 
+ 
+Q: Write a SQL that will give the top product by sales in each of the product groups and additionally gather GV, Inventory, and ad spend measures also for the product. 
+ 
+Desired Output:
+
+Book 		P1 10 1000 100 0
+Electronics 	P4 25 500 30 30
+Shoes 		P11 45 0 0 0
+Video DVD 	P8 100 700 90 0
+
+===================================================================================
+
+Question 9:
+
+Q: For the Same table structures as above, write a SQL to give all Products that have glance views but no sales.
+
+Desired Output:
+P12
+P13
+P14
+
+===================================================================================
+
+Question 10:
+
+Q: For the same above table structure, Write a SQL to give the sales of Electronics as a Percentage of Books
+
+Desired Output:
+ 300
+
+===================================================================================
+
+Question 11: 
+
+Consider a Phone Log table as below. It records all phone numbers that we dial in a given day.
+
+SOURCE_PHONE_NUMBER DESTINATION_PHONE_NUMBER CALL_START_DATETIME
+------------------- ------------------------ ---------------------------------------------------------------------
+	       1234			4567 			01/07/2011 10:00
+	       1234			2345 			01/07/2011 11:00
+	       1234			3456 			01/07/2011 12:00
+	       1234			3456 			01/07/2011 13:00
+	       1234			4567 			01/07/2011 15:00
+	       1222			7890 			01/07/2011 10:00
+	       1222			7680 			01/07/2011 12:00
+	       1222			2345 			01/07/2011 13:00
+
+Q: Please provide an SQL query to display the source_phone_number and a flag where the flag needs to be set to Y if first called number and last called number are the same and N if the first called number and last called number are different.
+
+Desired Output:
+
+Source Number 	Is_Match
+1222           		N
+1234           		Y
+
+===================================================================================
+
+
+Consider an Orders table which has 15 years of historical orders and you are loading everyday incremental orders into it on a daily basis(1 million orders per day are loaded and historically the full orders is close to a billion orders). The orders table is range partitioned on order_day.
+ 
+ORDERS
+-----------
+ORDER_ID
+ORDER_DAY
+CUSTOMER_ID
+ADDRESS_ID
+ITEM_ID
+PRICE
+QUANTITY
+ 
+ORDERS_DAILY_INCREMENT
+----------------
+SNAPSHOT_DAY
+ORDER_ID
+ORDER_DAY
+CUSTOMER_ID
+ADDRESS_ID
+ITEM_ID
+PRICE
+QUANTITY
+ 
+If you are asked to build a daily aggregate table like the one shown below with "new_customer" metric and "reactivated_customer" metric(a reactivated customer is the one who did not have a purchase in the last one year but made a purchase today) on each day
+ 
+CUSTOMER_AGGREGATE
+----------------------------------
+SNAPSHOT_DAY
+NEW_CUSTOMERS
+REACTIVATED_CUSTOMERS
+ 
+ 
+Would you build any interim tables to support this requirement ?
+if yes, why and what would they look like along with SQLs that you would use on ORDERS and ORDERS_DAILY_INCREMENT table to build those interim tables
+if no, why not and please provide the SQL that you would use to build the final CUSTOMER_AGGREGATE table using ORDERS and 
+ORDERS_DAILY_INCREMENT
+
+
+===================================================================================
+
+Q1 : Scenario 
+You have table 
+T1 [offer_id , merchant_id , eod_price , is_deleted ]
+T2 [offer_id , merchant_id , discount_price , shipping_price]
+T1 and T2 are tables which get loaded by a two different feeds f1 and f2 respectively. If a record makes into T1 on a day, the same offer will be present in T2 also. Lets not have scenarios where in a offer is coming incrementally into one table (T1 or T2) but not the another. 
+Both these tables are used to populate a final table 
+table F [run_date , offer_id , merchant_id , eod_price , discount_price , shipping_price].
+
+A offer is considered valid if you have entry in table F on a given run_date. users are interested in following Qs : If today is 04th April 2015, How many offers we have for run_date = 01-April-2015. How many we have for run_date = 04-April-2015. Table F is queried by users to get all valid offers on a given day. 
+Following examples were discussed 
+
+
+01-APRIL-2015
+===================
+incremental table T1 
+run_date -- offer_id -- merchant_id -- eod_price -- is_deleted
+01-April -- O1       --    M1       --   100     --  N
+
+F table 
+run_date -- offer_id -- merchant_id -- eod_price -- discount_price -- shipping_price 
+01-April -- O1       --    M1       --   100     --     0          --    1 
+
+
+02-APRIL-2015
+===================
+incremental table T2 
+run_date -- offer_id -- merchant_id -- eod_price -- is_deleted
+02-April -- O1       --    M1       --   90     --  N
+
+F table 
+run_date -- offer_id -- merchant_id -- eod_price -- discount_price -- shipping_price 
+01-April -- O1       --    M1       --   100     --     0          --    1 
+02-April -- O1       --    M1       --    90     --     0          --    1
+
+03-APRIL-2015
+===================
+incremental table T2 
+run_date -- offer_id -- merchant_id -- eod_price -- is_deleted
+03-April -- O1       --    M1       --   90     --  N
+
+F table 
+run_date -- offer_id -- merchant_id -- eod_price -- discount_price -- shipping_price 
+01-April -- O1       --    M1       --   100     --     0          --    1 
+02-April -- O1       --    M1       --    90     --     0          --    1
+03-April -- O1       --    M1       --   100     --     0          --    1
+
+04-APRIL-2015
+===================
+incremental table T2 
+run_date -- offer_id -- merchant_id -- eod_price -- is_deleted
+04-April -- O1       --    M1       --   90     --  Y
+04-April -- O2       --    M2       --   77     --  N
+04-April -- O3       --    M2       --   77     --  Y
+
+F table 
+run_date -- offer_id -- merchant_id -- eod_price -- discount_price -- shipping_price 
+01-April -- O1       --    M1       --   100     --     0          --    1 
+02-April -- O1       --    M1       --    90     --     0          --    1
+03-April -- O1       --    M1       --   100     --     0          --    1
+04-April -- O3       --    M2       --    77     --     9          --    0
+
+Write a Query to load data (perform this ETL) into F using T1 and T2 in the above mentioned fashion.
+Consider F has 2B rows and T1 and T2 get 800M rows on incremental basis.
+If required you can build any intermediate tables.
+
+===================================================================================
+
+Q2 :
+Given a table T [X number] = {1,2,4,5,6,7} write a SQL which outputs all the elements/rows if column X is not having a row with value 3. But if it has 3, then it returns nothing.
+
+===================================================================================
+
+Input :
+req_date             req_qty            
+=====================
+'1994-07-01'        100        
+'1994-07-02'        120                        
+'1994-07-03'        -150                    
+'1994-07-04'        50                        
+'1994-07-05'        -35
+
+O/p:
+
+req_date             req_qty                onhand_qty
+========================================================
+'2012-07-01'        100                         100
+'2012-07-02'        120                         220
+'2012-07-03'        -150                     70
+'2012-07-04'        50                         120
+'2012-07-05'        -35                         85
+
+Write a SQL without using analytical functions. 
+
+===================================================================================
+
+Consider a table:
+
+T [Book_Name,Language]
+
+Book_Name                   Language
+
+--------  ----  --------- --------  ----
+
+A                             EN
+
+A                             FR
+
+A                             JP
+
+B                             EN
+
+B                             JP
+
+B                             CN
+
+C                             EN
+
+We have a table of Books and the Languages they are available in.
+
+Which books are available in more than 50% of all Languages?
+
+
+
+Desired Output:
+
+Book_Name      
+--------  
+
+A
+
+B
+
+===================================================================================
+
+Q 2 : 
+================
+Given table Sales [Order_day , Product_id , Amount]
+
+sales 
+Order_day 		 Product_id  		Amount
+01-Jan-2014		    p1 				100
+01-Jan-2014         p2  			150	
+02-Jan-2014         p1				160
+02-Jan-2014         p3				170
+02-Jan-2014         p4				180
+02-Jan-2014         p4				180
+03-Jan-2014         p4				180
+03-Jan-2014         p5				180
+04-Jan-2014         p4				180
+04-Jan-2014         p5				180
+
+
+Give me products that were Ordered on both days 01-jan-2014 and 02-jan-2014
+
+
+
+Q3 : 
+================
+cust ( cid )
+sales ( Qty_sold , cid)
+orders( order_value , cid )
+
+sample data :
+cust table :
+id 
+====
+1
+2
+3
+
+
+sales 
+=====
+10 1
+20 1
+30 2
+40 2
+
+orders
+======
+100 1
+200 1
+100 2 
+200 2
+
+I want to see : per cust what is the net Qty sold and net order value.
+
+===================================================================================
+
+We have a denormalized table WORK_ITEM_ASSIGNMENT having one row for each work item.
+One staff might have multiple work items open at a time.
+For open Work items closed_timestamp will be null.
+WORK_ITEM_ASSIGNMENT table:
+WORK_ITEM_ID EMP_ID ASSIGNED_TIMESTAMP CLOSED_TIMESTAMP
+============================================================================
+12345 1 2008-11-11 11:22:44 2009-01-11 13:23:44
+12346 1 2008-12-09 10:23:45 NULL
+12437 2 2008-11-11 09:16:44 NULL
+12459 3 2008-11-11 07:19:44 NULL
+ROLES tables:
+EMP_ID ROLE
+==========================
+1 DE
+1 DBA
+2 SDE
+3 DBA
+4 DE
+
+We need a report in following format, write a SQL to get that report-
+ROLE COUNT_OF_STAFF COUNT_OF_OPEN_WORKITEMS
+===================================================
+DE 2 1
+DBA 2 2
+SDE 1 1
